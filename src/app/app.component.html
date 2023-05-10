@@ -1,0 +1,41 @@
+
+<button class="l-button" (click)="obtenerDatos()" >Llamar</button>
+
+<!--
+<select [(ngModel)]="selectedCurrency" (input)="convertCurrency()">
+  <option *ngFor="let currency of datos">{{ currency.name }}</option>
+</select>
+
+<select>
+  <option *ngFor="let currency of datos" >{{ currency.name }}</option>
+</select>
+
+<input type="number" [(ngModel)]="amount" (input)="convertCurrency()" />
+ -->
+
+ <!-- This Workds well -->
+ <!-- <select [(ngModel)]="selectedCurrency" (input)="convertCurrency()">
+  <option *ngFor="let currency of datos" [value]="currency.unit">
+    {{ currency.name }}
+  </option>
+</select>
+
+<div>
+  <input type="number" [(ngModel)]="amount" (input)="convertCurrency()">
+  {{ amount }} {{ selectedCurrency | currency:'USD':'symbol':'1.2-5' }} = {{ convertedAmount | currency:'USD':'symbol':'1.2-2' }}
+</div> -->
+
+<select [(ngModel)]="fromCurrency" (select)="convertCurrency()">
+  <option *ngFor="let currency of datos" [value]="currency.unit">{{ currency.name }}</option>
+</select>
+
+<input type="number" [(ngModel)]="amount" onclick="convertCurrency()" (input)="convertCurrency()">
+
+<select [(ngModel)]="toCurrency" (change)="convertCurrency()">
+  <option *ngFor="let currency of datos" [value]="currency.unit">{{ currency.name }} </option>
+</select>
+<br>
+
+<p>{{ amount }} {{ fromCurrency }} = {{ toCurrency }} {{ convertedAmount }} </p>
+
+
