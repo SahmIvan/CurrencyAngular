@@ -12,8 +12,8 @@ export class AppComponent {
   // amount?: number;
   // convertedAmount?: number;
 
-  fromCurrency: string = 'USD';
-  toCurrency: string = 'EUR';
+  fromCurrency?: "";
+  toCurrency?: "";
   amount: number = 1;
   convertedAmount: number = 0;
 
@@ -37,20 +37,17 @@ export class AppComponent {
   }
 
   convertCurrency(): void {
-    const fromCurrencyObj = this.datos.find((currency: { unit: string; }) => currency.unit === this.fromCurrency);
-    const toCurrencyObj = this.datos.find((currency: { unit: string; }) => currency.unit === this.toCurrency);
+    const fromCurrencyObj = this.datos.find((currency: ICurrency) => currency.currency === this.fromCurrency); //"Mapea" el array de la api y busca que coincida la unidad con la divisa seleccionada
+    const toCurrencyObj = this.datos.find((currency: ICurrency) => currency.currency === this.toCurrency);
 
-    if (fromCurrencyObj && toCurrencyObj) {
-      this.fromCurrency = fromCurrencyObj.name;
-      this.toCurrency = toCurrencyObj.name;
-
+    if (fromCurrencyObj && toCurrencyObj) { //Verifica que los 2 tengan unidades seleccioandas
       const exchangeRate = fromCurrencyObj.unit / toCurrencyObj.unit;
-      this.convertedAmount = exchangeRate;
-      console.log(this)
+      this.convertedAmount = this.amount * exchangeRate;
     }
   }
+  }
 
-}
+
 // convertCurrency(): void {
 
   //   try {

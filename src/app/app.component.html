@@ -25,7 +25,7 @@
   {{ amount }} {{ selectedCurrency | currency:'USD':'symbol':'1.2-5' }} = {{ convertedAmount | currency:'USD':'symbol':'1.2-2' }}
 </div> -->
 
-<select [(ngModel)]="fromCurrency" (select)="convertCurrency()">
+<!-- <select [(ngModel)]="fromCurrency" (select)="convertCurrency()">
   <option *ngFor="let currency of datos" [value]="currency.unit">{{ currency.name }}</option>
 </select>
 
@@ -36,6 +36,17 @@
 </select>
 <br>
 
-<p>{{ amount }} {{ fromCurrency }} = {{ toCurrency }} {{ convertedAmount }} </p>
+<p>{{ amount }} {{ fromCurrency }} = {{ toCurrency }} {{ convertedAmount }} </p> -->
 
+<select [(ngModel)]="fromCurrency" (ngModelChange)="convertCurrency()">
+  <option *ngFor="let currency of datos" [value]="currency.currency">{{ currency.currency }}</option>
+</select>
+
+<input type="number" [(ngModel)]="amount" (input)="convertCurrency()">
+
+<select [(ngModel)]="toCurrency" (ngModelChange)="convertCurrency()">
+  <option *ngFor="let currency of datos" [value]="currency.currency">{{ currency.currency }}</option>
+</select>
+
+<p>{{ amount }} {{ fromCurrency }} = {{ convertedAmount }} {{ toCurrency }}</p>
 
