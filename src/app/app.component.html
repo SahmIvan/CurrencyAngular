@@ -47,6 +47,7 @@
 <select [(ngModel)]="toCurrency" (ngModelChange)="convertCurrency()">
   <option *ngFor="let currency of datos" [value]="currency.currency">{{ currency.currency }}</option>
 </select>
-
+<button (click)="swapCurrencies()">Swap</button>
 <p>{{ amount }} {{ fromCurrency }} = {{ convertedAmount }} {{ toCurrency }}</p>
+
 

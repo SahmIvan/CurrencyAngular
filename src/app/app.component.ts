@@ -38,6 +38,7 @@ export class AppComponent {
 
   convertCurrency(): void {
     const fromCurrencyObj = this.datos.find((currency: ICurrency) => currency.currency === this.fromCurrency); //"Mapea" el array de la api y busca que coincida la unidad con la divisa seleccionada
+    //.find((elemento: Index a buscar) => elemento.propiedad === valor a buscar)
     const toCurrencyObj = this.datos.find((currency: ICurrency) => currency.currency === this.toCurrency);
 
     if (fromCurrencyObj && toCurrencyObj) { //Verifica que los 2 tengan unidades seleccioandas
@@ -45,7 +46,17 @@ export class AppComponent {
       this.convertedAmount = this.amount * exchangeRate;
     }
   }
+
+  swapCurrencies(): void {
+    [this.fromCurrency, this.toCurrency] = [this.toCurrency, this.fromCurrency]; //Destructuracion de array
+    this.convertCurrency();
   }
+
+
+  }
+
+
+
 
 
 // convertCurrency(): void {
